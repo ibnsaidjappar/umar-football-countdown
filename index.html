@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umar ibn Saidjappar | Futbolga Qaytish Teskari Hisobi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero" aria-label="Umar ibn Saidjappar futbolga qaytish teskari hisobi">
+        <img
+          class="hero-art"
+          src="assets/football-recovery-hero.png"
+          alt="Manga uslubidagi futbolga qaytish va oyoq tiklanishi sahnasi"
+        />
+        <div class="ink-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow">Umar ibn Saidjappar</p>
+          <h1>Futbolga qaytishgacha</h1>
+          <p class="recovery-tag">Oyoq jarohatidan keyingi 180 kunlik teskari hisob</p>
+          <p class="lead">
+            Maydonga shoshmasdan, lekin to'xtamasdan qaytish uchun teskari
+            hisob. Har kun tiklanish, har soat sabr, finalda yana futbol.
+          </p>
+
+          <section class="timer-panel" aria-live="polite">
+            <div class="timer-grid">
+              <article class="time-card">
+                <span id="days">180</span>
+                <small>kun</small>
+              </article>
+              <article class="time-card">
+                <span id="hours">00</span>
+                <small>soat</small>
+              </article>
+              <article class="time-card">
+                <span id="minutes">00</span>
+                <small>minut</small>
+              </article>
+              <article class="time-card">
+                <span id="seconds">00</span>
+                <small>sekund</small>
+              </article>
+            </div>
+
+            <div class="progress-wrap">
+              <div class="progress-meta">
+                <span id="statusText">Tiklanish sanasi yuklanmoqda</span>
+                <strong id="progressText">0%</strong>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div id="progressBar" class="progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="control-strip">
+              <label class="date-field">
+                <span>Tiklanish boshlangan sana</span>
+                <input id="startDate" type="date" />
+              </label>
+              <button id="applyDate" type="button">Belgilash</button>
+              <button id="resetDate" class="ghost" type="button">Bugundan tiklanish</button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="daily-board" aria-label="Tiklanish progressi">
+        <div class="section-heading">
+          <p class="eyebrow">Recovery arc</p>
+          <h2>Bugungi tiklanish paneli</h2>
+        </div>
+        <div class="board-grid">
+          <article class="story-card">
+            <span class="chapter-label">Recovery day</span>
+            <strong id="chapterNumber">001</strong>
+            <p id="chapterText">Birinchi sahifa ochildi. Sabr bilan tiklanish boshlandi.</p>
+          </article>
+          <article class="quote-card">
+            <p id="mangaLine">"Bugungi ehtiyotkor qadam ertangi golga olib boradi."</p>
+          </article>
+          <article class="finish-card">
+            <span>Maydonga qaytish</span>
+            <strong id="finishDate">-</strong>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
