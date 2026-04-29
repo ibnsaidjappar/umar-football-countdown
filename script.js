@@ -1,6 +1,6 @@
 const TOTAL_DAYS = 180;
 const DAY_MS = 24 * 60 * 60 * 1000;
-const STORAGE_KEY = "umar-football-recovery-countdown-start";
+const START_DATE = new Date(2026, 3, 29);
 
 const el = {
   days: document.querySelector("#days"),
@@ -10,9 +10,6 @@ const el = {
   progressBar: document.querySelector("#progressBar"),
   progressText: document.querySelector("#progressText"),
   statusText: document.querySelector("#statusText"),
-  startDate: document.querySelector("#startDate"),
-  applyDate: document.querySelector("#applyDate"),
-  resetDate: document.querySelector("#resetDate"),
   chapterNumber: document.querySelector("#chapterNumber"),
   chapterText: document.querySelector("#chapterText"),
   mangaLine: document.querySelector("#mangaLine"),
@@ -31,33 +28,6 @@ function pad(value) {
   return String(value).padStart(2, "0");
 }
 
-function dateInputValue(date) {
-  const year = date.getFullYear();
-  const month = pad(date.getMonth() + 1);
-  const day = pad(date.getDate());
-  return `${year}-${month}-${day}`;
-}
-
-function readStartDate() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) {
-    const parsed = new Date(saved);
-    if (!Number.isNaN(parsed.getTime())) return parsed;
-  }
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  localStorage.setItem(STORAGE_KEY, today.toISOString());
-  return today;
-}
-
-function saveStartDate(value) {
-  const date = new Date(`${value}T00:00:00`);
-  if (Number.isNaN(date.getTime())) return;
-  localStorage.setItem(STORAGE_KEY, date.toISOString());
-  updateCountdown();
-}
-
 function formatDate(date) {
   return new Intl.DateTimeFormat("uz-UZ", {
     day: "2-digit",
@@ -67,7 +37,7 @@ function formatDate(date) {
 }
 
 function updateCountdown() {
-  const start = readStartDate();
+  const start = START_DATE;
   const finish = new Date(start.getTime() + TOTAL_DAYS * DAY_MS);
   const now = new Date();
   const remaining = Math.max(0, finish.getTime() - now.getTime());
@@ -86,7 +56,6 @@ function updateCountdown() {
   el.seconds.textContent = pad(seconds);
   el.progressBar.style.width = `${progress}%`;
   el.progressText.textContent = `${progress.toFixed(1)}%`;
-  el.startDate.value = dateInputValue(start);
   el.finishDate.textContent = formatDate(finish);
   el.chapterNumber.textContent = pad(chapter).padStart(3, "0");
   el.chapterText.textContent =
@@ -99,17 +68,6 @@ function updateCountdown() {
       ? "Futbolga qaytish kuni keldi"
       : `Tiklanish: ${formatDate(start)} dan ${formatDate(finish)} gacha`;
 }
-
-el.applyDate.addEventListener("click", () => saveStartDate(el.startDate.value));
-el.resetDate.addEventListener("click", () => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  localStorage.setItem(STORAGE_KEY, today.toISOString());
-  updateCountdown();
-});
-el.startDate.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") saveStartDate(el.startDate.value);
-});
 
 updateCountdown();
 setInterval(updateCountdown, 1000);

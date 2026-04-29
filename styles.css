@@ -24,11 +24,6 @@ body {
     var(--paper);
 }
 
-button,
-input {
-  font: inherit;
-}
-
 .page-shell {
   min-height: 100vh;
   overflow: hidden;
@@ -182,48 +177,52 @@ h1 {
   transition: width 0.5s ease;
 }
 
-.control-strip {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) auto auto;
-  gap: 12px;
-  align-items: end;
+.locked-date-strip {
   margin-top: 20px;
 }
 
-.date-field {
+.locked-date {
+  width: min(320px, 100%);
   display: grid;
-  gap: 7px;
+  gap: 8px;
   font-weight: 900;
 }
 
-.date-field input {
-  width: 100%;
+.locked-date strong {
+  position: relative;
   min-height: 48px;
-  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  padding: 0 52px 0 14px;
   border: 3px solid var(--line);
   background: #fff;
   color: var(--ink);
-}
-
-button {
-  min-height: 48px;
-  padding: 0 18px;
-  border: 3px solid var(--line);
-  color: #fff;
-  background: var(--ink);
-  font-weight: 900;
-  cursor: pointer;
-  box-shadow: 4px 4px 0 var(--red);
-}
-
-button:hover {
-  transform: translate(-1px, -1px);
-}
-
-button.ghost {
-  color: var(--ink);
-  background: #fff;
   box-shadow: 4px 4px 0 var(--teal);
+  font-size: 1.08rem;
+}
+
+.locked-date strong::before,
+.locked-date strong::after {
+  content: "";
+  position: absolute;
+  right: 17px;
+}
+
+.locked-date strong::before {
+  width: 16px;
+  height: 16px;
+  top: 15px;
+  border: 3px solid var(--line);
+  border-top-width: 5px;
+  background: #fff;
+}
+
+.locked-date strong::after {
+  width: 3px;
+  height: 8px;
+  top: 12px;
+  box-shadow: -5px 0 0 var(--line), 5px 0 0 var(--line);
+  background: var(--line);
 }
 
 .daily-board {
@@ -319,7 +318,6 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .control-strip,
   .board-grid {
     grid-template-columns: 1fr;
   }
